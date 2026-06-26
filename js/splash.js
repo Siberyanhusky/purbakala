@@ -2,6 +2,6 @@
 
 setTimeout(() => {
 
-    window.location.href = "https://siberyanhusky.github.io/prologue/index.html";
+    window.location.href = "https://siberyanhusky.github.io/purbakala/prologue/index.html";
 
 },3000);
