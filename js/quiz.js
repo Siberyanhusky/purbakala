@@ -180,10 +180,23 @@ function finish(){
                 <p>Jawaban Anda :
                 ${q.options[userAnswers[index]]}</p>
 
-                <p>Jawaban Benar :
-                ${q.options[q.answer]}</p>
-
-                <p>${q.explanation}</p>
+               <p><strong>Jawaban Anda:</strong><br>
+                ${q.options[userAnswers[index]]}</p>
+                
+                ${benar
+                ? "<p style='color:green;'>✔ Jawaban Anda benar.</p>"
+                : `
+                <p style='color:#d97706;'>⚠ Jawaban Anda masih kurang tepat.</p>
+                
+                <button
+                class="ask-ai-btn"
+                data-question="${index}">
+                
+                🤖 Tanya PurbaAI
+                
+                </button>
+                `
+                }
 
                 <hr>
 
