@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Materi | KURBUTEKS</title>
+
+<link rel="stylesheet" href="../css/materi.css">
+
+<!-- Model Viewer -->
+<script type="module"
+src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<h1>Meganthropus Paleojavanicus</h1>
+
+<p>
+Pelajari salah satu manusia purba tertua yang pernah ditemukan di Indonesia.
+</p>
+
+</header>
+
+<!-- FOTO -->
+
+<section class="image-section">
+
+<img
+src="../assets/images/materials/meganthropus.webp"
+alt="Meganthropus">
+
+</section>
+
+<!-- DESKRIPSI -->
+
+<section class="description">
+
+<h2>Deskripsi</h2>
+
+<p>
+
+Meganthropus paleojavanicus merupakan salah satu manusia purba yang
+fosilnya ditemukan di Situs Sangiran, Jawa Tengah. Fosil ini
+memiliki ciri rahang yang sangat besar, tulang pipi tebal,
+serta tubuh yang diperkirakan lebih kekar dibandingkan manusia
+purba lainnya.
+
+</p>
+
+</section>
+
+<!-- AUDIO -->
+
+<section class="audio">
+
+<h2>Narasi</h2>
+
+<audio controls>
+
+<source
+src="../assets/audio/meganthropus.mp3"
+type="audio/mpeg">
+
+</audio>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section class="timeline">
+
+<h2>Timeline</h2>
+
+<ul>
+
+<li>1936 — Penemuan awal fosil di Sangiran.</li>
+
+<li>1936–1941 — Diteliti oleh G.H.R. von Koenigswald.</li>
+
+<li>Warisan penting dalam kajian manusia purba Indonesia.</li>
+
+</ul>
+
+</section>
+
+<!-- MODEL 3D -->
+
+<section class="viewer">
+
+<h2>Model 3D</h2>
+
+<model-viewer
+
+src="../assets/models/meganthropus.glb"
+
+camera-controls
+
+touch-action="pan-y"
+
+auto-rotate
+
+shadow-intensity="1"
+
+style="width:100%;height:400px;">
+
+</model-viewer>
+
+</section>
+
+<!-- FITUR -->
+
+<section class="actions">
+
+<button id="chatAI">
+
+💬 Tanya AI
+
+</button>
+
+<button id="lihatAR">
+
+📱 Lihat Dalam AR
+
+</button>
+
+</section>
+
+</div>
+
+<script src="../js/materi.js"></script>
+
+</body>
+
+</html>
