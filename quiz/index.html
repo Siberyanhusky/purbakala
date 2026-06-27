@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz | KURBUTEKS</title>
+
+    <link rel="stylesheet" href="../css/quiz.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <header class="header">
+
+        <button id="back-btn">
+            ← Kembali
+        </button>
+
+        <div>
+
+            <h1>KURBUTEKS</h1>
+
+            <p>Quiz Meganthropus Paleojavanicus</p>
+
+        </div>
+
+    </header>
+
+    <!-- ==========================================
+         INTRO
+    =========================================== -->
+
+    <section id="intro-screen" class="card">
+
+        <h2>🎉 Selamat!</h2>
+
+        <p>
+
+            Anda telah menyelesaikan eksplorasi seluruh bagian tubuh
+            <strong>Meganthropus Paleojavanicus</strong>.
+
+        </p>
+
+        <p>
+
+            Sekarang saatnya menguji pemahaman Anda melalui 5 soal pilihan ganda.
+
+        </p>
+
+        <button id="start-btn">
+
+            Mulai Quiz
+
+        </button>
+
+    </section>
+
+    <!-- ==========================================
+         QUIZ
+    =========================================== -->
+
+    <section id="quiz-screen" class="card hidden">
+
+        <div class="progress">
+
+            <div id="progress-bar"></div>
+
+        </div>
+
+        <div class="progress-text">
+
+            Soal
+
+            <span id="question-number">
+
+                1
+
+            </span>
+
+            /
+
+            <span id="total-question">
+
+                5
+
+            </span>
+
+        </div>
+
+        <h2 id="question">
+
+            Pertanyaan akan muncul di sini.
+
+        </h2>
+
+        <div id="options">
+
+            <!-- quiz.js -->
+
+        </div>
+
+        <button
+            id="next-btn"
+            disabled>
+
+            Selanjutnya →
+
+        </button>
+
+    </section>
+
+    <!-- ==========================================
+         RESULT
+    =========================================== -->
+
+    <section id="result-screen" class="card hidden">
+
+        <h2>
+
+            🎓 Quiz Selesai
+
+        </h2>
+
+        <div id="score-circle">
+
+            0
+
+        </div>
+
+        <h3 id="score-text">
+
+            Skor Anda
+
+        </h3>
+
+        <p id="result-message">
+
+            ...
+
+        </p>
+
+        <div class="result-buttons">
+
+            <button id="retry-btn">
+
+                🔄 Ulangi Quiz
+
+            </button>
+
+            <button id="finish-btn">
+
+                🏠 Kembali ke Home
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <script src="../js/quiz.js"></script>
+
+</body>
+
+</html>
