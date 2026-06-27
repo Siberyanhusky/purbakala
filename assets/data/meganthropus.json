@@ -39,5 +39,72 @@
       "audio": "../assets/audio/meganthropus/kaki.mp3",
       "caption": "Terakhir, amati bagian kaki. Kaki Meganthropus memiliki struktur tulang yang kokoh untuk menopang tubuhnya yang besar. Bagian ini memungkinkan Meganthropus bergerak dan berpindah tempat dalam mencari makanan maupun bertahan hidup di lingkungan sekitarnya. Anda telah menyelesaikan eksplorasi anatomi Meganthropus paleojavanicus. Silakan lanjutkan ke kuis untuk menguji pemahaman Anda."
     }
-  }
+  },
+
+  "quiz": [
+    {
+      "id": 1,
+      "question": "Bagian tubuh Meganthropus yang memiliki struktur paling kuat adalah...",
+      "options": [
+        "Rahang",
+        "Lengan",
+        "Kaki",
+        "Punggung"
+      ],
+      "answer": 0,
+      "explanation": "Rahang Meganthropus berukuran besar dan sangat kuat sehingga mampu mengunyah makanan bertekstur keras."
+    },
+
+    {
+      "id": 2,
+      "question": "Tonjolan alis Meganthropus menunjukkan bahwa tengkoraknya memiliki ciri...",
+      "options": [
+        "Primitif",
+        "Modern",
+        "Tipis",
+        "Kecil"
+      ],
+      "answer": 0,
+      "explanation": "Tonjolan alis yang tebal merupakan salah satu ciri tengkorak Meganthropus yang masih sangat primitif."
+    },
+
+    {
+      "id": 3,
+      "question": "Postur tubuh Meganthropus diperkirakan memiliki ciri...",
+      "options": [
+        "Besar dan kekar",
+        "Pendek dan kurus",
+        "Kecil dan ringan",
+        "Sangat ramping"
+      ],
+      "answer": 0,
+      "explanation": "Ukuran fosil menunjukkan Meganthropus memiliki tubuh yang besar dengan tulang yang kuat."
+    },
+
+    {
+      "id": 4,
+      "question": "Lengan Meganthropus berfungsi untuk membantu...",
+      "options": [
+        "Mengumpulkan makanan dan beraktivitas",
+        "Terbang",
+        "Berenang",
+        "Membuat api"
+      ],
+      "answer": 0,
+      "explanation": "Lengan yang kuat membantu Meganthropus mengumpulkan makanan dan beradaptasi dengan lingkungannya."
+    },
+
+    {
+      "id": 5,
+      "question": "Struktur kaki Meganthropus berfungsi untuk...",
+      "options": [
+        "Menopang tubuh yang besar",
+        "Memanjat pohon dengan ekor",
+        "Terbang jarak jauh",
+        "Menggali tanah"
+      ],
+      "answer": 0,
+      "explanation": "Kaki yang kokoh menopang tubuh Meganthropus saat bergerak dan mencari makanan."
+    }
+  ]
 }
