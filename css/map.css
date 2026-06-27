@@ -376,11 +376,23 @@ header p{
 
 #marker{
 
-    width:32px;
+    position:absolute;
+
+    width:38px;
 
     left:41.8%;
 
     top:60.5%;
+
+    transform:translate(-50%,-100%);
+
+    cursor:pointer;
+
+    animation:pulse 2s infinite;
+
+    transition:.25s;
+
+    z-index:5;
 
 }
 
@@ -397,6 +409,7 @@ header p{
     height:150px;
 
 }
+   
 
 #startLearning{
 
