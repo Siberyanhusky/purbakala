@@ -1,112 +1,9 @@
-const quiz = [
+let quiz = [];
 
-{
-
-question:"Bagian tubuh Meganthropus yang memiliki struktur paling kuat adalah...",
-
-options:[
-
-"Rahang",
-
-"Lengan",
-
-"Kaki",
-
-"Punggung"
-
-],
-
-answer:0
-
-},
-
-{
-
-question:"Fungsi rahang Meganthropus diperkirakan untuk...",
-
-options:[
-
-"Mengunyah makanan keras",
-
-"Berbicara",
-
-"Berlari",
-
-"Memanjat"
-
-],
-
-answer:0
-
-},
-
-{
-
-question:"Tubuh Meganthropus memiliki ciri...",
-
-options:[
-
-"Tegap dan kekar",
-
-"Kecil",
-
-"Pendek",
-
-"Langsing"
-
-],
-
-answer:0
-
-},
-
-{
-
-question:"Lengan Meganthropus menunjukkan bahwa ia memiliki...",
-
-options:[
-
-"Kekuatan fisik",
-
-"Sayap",
-
-"Sirip",
-
-"Ekor"
-
-],
-
-answer:0
-
-},
-
-{
-
-question:"Kaki Meganthropus berfungsi untuk...",
-
-options:[
-
-"Berjalan tegak",
-
-"Terbang",
-
-"Berenang",
-
-"Melompat di pohon"
-
-],
-
-answer:0
-
-}
-
-];
-
-let current=0;
-
-let score=0;
-
-let selected=null;
+let current = 0;
+let score = 0;
+let selected = null;
+let userAnswers = [];
 
 const intro=document.getElementById("intro-screen");
 
@@ -132,15 +29,35 @@ const scoreText=document.getElementById("score-text");
 
 const resultMessage=document.getElementById("result-message");
 
-total.textContent=quiz.length;
+const reviewList=document.getElementById("review-list");
 
-document.getElementById("start-btn").onclick=()=>{
+const askAI=document.getElementById("ask-ai");
 
-intro.classList.add("hidden");
+async function loadQuiz(){
 
-quizScreen.classList.remove("hidden");
+    const res = await fetch("../assets/data/meganthropus.json");
 
-render();
+    const data = await res.json();
+
+    quiz = data.quiz;
+
+    total.textContent = quiz.length;
+
+}
+
+document.getElementById("start-btn").onclick = async ()=>{
+
+    if(quiz.length===0){
+
+        await loadQuiz();
+
+    }
+
+    intro.classList.add("hidden");
+
+    quizScreen.classList.remove("hidden");
+
+    render();
 
 };
 
@@ -173,7 +90,9 @@ document.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));
 btn.classList.add("selected");
 
 selected=index;
-
+  
+userAnswers[current]=index;
+  
 next.disabled=false;
 
 };
@@ -208,56 +127,82 @@ finish();
 
 function finish(){
 
-quizScreen.classList.add("hidden");
+    quizScreen.classList.add("hidden");
 
-result.classList.remove("hidden");
+    result.classList.remove("hidden");
 
-const nilai=Math.round(score/quiz.length*100);
+    const nilai=Math.round(score/quiz.length*100);
 
-scoreCircle.textContent=nilai;
+    scoreCircle.textContent=nilai;
 
-scoreText.textContent="Nilai : "+nilai;
+    scoreText.textContent="Nilai : "+nilai;
 
-if(nilai===100){
+    if(nilai===100){
 
-resultMessage.textContent="Luar biasa! Semua jawaban benar.";
+        resultMessage.textContent="Luar biasa! Semua jawaban benar.";
+
+    }
+
+    else if(nilai>=80){
+
+        resultMessage.textContent="Bagus! Pemahaman Anda sudah sangat baik.";
+
+    }
+
+    else if(nilai>=60){
+
+        resultMessage.textContent="Cukup baik. Pelajari kembali materi AR.";
+
+    }
+
+    else{
+
+        resultMessage.textContent="Silakan pelajari kembali materi sebelum mengulang quiz.";
+
+    }
+
+    if(reviewList){
+
+        reviewList.innerHTML="";
+
+        quiz.forEach((q,index)=>{
+
+            const benar=userAnswers[index]===q.answer;
+
+            reviewList.innerHTML+=`
+
+            <div class="review-item">
+
+                <h4>${benar?"✅":"❌"} Soal ${index+1}</h4>
+
+                <p><b>${q.question}</b></p>
+
+                <p>Jawaban Anda :
+                ${q.options[userAnswers[index]]}</p>
+
+                <p>Jawaban Benar :
+                ${q.options[q.answer]}</p>
+
+                <p>${q.explanation}</p>
+
+                <hr>
+
+            </div>
+
+            `;
+
+        });
+
+    }
 
 }
 
-else if(nilai>=80){
+if(askAI){
 
-resultMessage.textContent="Bagus! Pemahaman Anda sudah sangat baik.";
+    askAI.onclick=()=>{
 
-}
+        alert("PurbaAI akan segera tersedia.");
 
-else if(nilai>=60){
-
-resultMessage.textContent="Cukup baik. Pelajari kembali materi AR.";
+    };
 
 }
-
-else{
-
-resultMessage.textContent="Silakan pelajari kembali materi sebelum mengulang quiz.";
-
-}
-
-}
-
-document.getElementById("retry-btn").onclick=()=>{
-
-location.reload();
-
-};
-
-document.getElementById("finish-btn").onclick=()=>{
-
-window.location.href="../";
-
-};
-
-document.getElementById("back-btn").onclick=()=>{
-
-history.back();
-
-};
