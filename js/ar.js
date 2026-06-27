@@ -523,12 +523,15 @@ const DOM = {
   infoPanel    : document.getElementById("info-panel"),
   caption      : document.getElementById("caption"),
   quizBtn      : document.getElementById("quiz-btn"),
+
+  closeInfo    : document.getElementById("close-info"),
+  openInfo     : document.getElementById("open-info"),
+
   scaleControls: document.getElementById("scale-controls"),
   focusBtns    : document.querySelectorAll(".focus-btn"),
   dots         : document.querySelectorAll(".dot"),
   backBtn      : document.getElementById("back-btn")
 };
-
 
 // ┌─────────────────────────────────────────────────┐
 // │  12. EVENT LISTENERS                             │
@@ -562,24 +565,55 @@ function initManagers() {
   // ── Quiz Button ───────────────────────────────────
   DOM.quizBtn.addEventListener("click", () => QuizController.start());
 
+  // ── Info Panel Toggle ─────────────────────────────
+
+DOM.closeInfo.addEventListener("click", () => {
+
+    DOM.infoPanel.style.display = "none";
+
+    DOM.openInfo.hidden = false;
+
+});
+
+DOM.openInfo.addEventListener("click", () => {
+
+    DOM.infoPanel.style.display = "block";
+
+    DOM.openInfo.hidden = true;
+
+});
+
   // ── MindAR Target Events ─────────────────────────
   DOM.target.addEventListener("targetFound", () => {
+
     DOM.loading.style.display       = "none";
+
     DOM.infoPanel.style.display     = "block";
+
     DOM.scaleControls.style.display = "flex";
 
-    // FIX BUG 2: Caption intro ditampilkan sebelum audio diputar
+    DOM.openInfo.hidden = true;
+
     AudioManager.playIntro();
-  });
+
+});
 
   // FIX BUG 7: Reset model saat marker hilang
-  DOM.target.addEventListener("targetLost", () => {
+DOM.target.addEventListener("targetLost", () => {
+
     DOM.infoPanel.style.display     = "none";
+
     DOM.scaleControls.style.display = "none";
+
+    DOM.openInfo.hidden = true;
+
     AudioManager.stop();
+
     ModelController.reset();
+
     CaptionController.clear();
-  });
+
+});
 
   // ── A-Frame Scene Events ─────────────────────────
   DOM.scene.addEventListener("arReady", () => {
