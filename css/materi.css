@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    min-height:100%;
+
+    background:#F6F0DE;
+
+    font-family:'Poppins',sans-serif;
+
+    color:#3D2C1E;
+
+}
+
+.container{
+
+    width:min(100%,900px);
+
+    margin:auto;
+
+    padding:30px 20px 80px;
+
+}
+
+header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+header h1{
+
+    font-family:'Cinzel',serif;
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+header p{
+
+    color:#6B5B4B;
+
+}
+
+section{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+section h2{
+
+    margin-bottom:15px;
+
+    color:#4A3728;
+
+}
+
+.image-section img{
+
+    width:100%;
+
+    border-radius:15px;
+
+}
+
+.description p{
+
+    line-height:1.8;
+
+    text-align:justify;
+
+}
+
+audio{
+
+    width:100%;
+
+}
+
+.timeline ul{
+
+    padding-left:20px;
+
+    line-height:2;
+
+}
+
+model-viewer{
+
+    width:100%;
+
+    height:420px;
+
+    background:#ECE2C6;
+
+    border-radius:15px;
+
+}
+
+.actions{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.actions button{
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:15px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#chatAI{
+
+    background:#4F46E5;
+
+    color:white;
+
+}
+
+#lihatAR{
+
+    background:#D4AF37;
+
+    color:white;
+
+}
+
+.actions button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+@media(max-width:768px){
+
+header h1{
+
+    font-size:26px;
+
+}
+
+model-viewer{
+
+    height:300px;
+
+}
+
+}
