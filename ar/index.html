@@ -64,11 +64,24 @@
     </a-entity>
   </a-scene>
 
-  <!-- ⑥ Info panel (muncul saat marker ditemukan) -->
-  <div id="info-panel">
-    <div id="panel-header">🦴 Meganthropus Paleojavanicus</div>
-    <hr>
+<!-- ⑥ Info panel (muncul saat marker ditemukan) -->
+<div id="info-panel">
 
+    <div id="panel-header">
+
+        <span>🦴 Meganthropus Paleojavanicus</span>
+
+        <button
+    id="close-info"
+    type="button">
+
+    ✕
+
+</button>
+
+    </div>
+
+    <hr>
     <!-- Focus mode buttons -->
     <div id="focus-buttons">
       <button class="focus-btn" data-part="kepala">① Kepala</button>
@@ -97,7 +110,16 @@
     <button id="quiz-btn" disabled>🔒 Selesaikan semua bagian dulu</button>
   </div>
 
-  <script defer src="../js/ar.js"></script>
+<button
+id="open-info"
+
+hidden>
+
+ⓘ
+
+</button>
+
+<script src="../js/ar.js"></script>
 
 </body>
 </html>
