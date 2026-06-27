@@ -5,26 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KURBUTEKS AR</title>
   <link rel="stylesheet" href="../css/ar.css">
-  <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <!-- MindAR -->
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <style>
+    /* Paksa video kamera MindAR tetap tampil */
+    video {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      z-index: 0 !important;
+    }
+    .a-canvas {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 1 !important;
+      background: transparent !important;
+    }
+    a-scene {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Loading panel — muncul sebelum AR dimulai -->
   <div id="loading">
     <h2>KURBUTEKS</h2>
-    <p>Arahkan kamera ke Image Target Meganthropus.</p>
+    <p>Tekan tombol di bawah untuk memulai AR.</p>
   </div>
 
-  <!-- Tombol kembali -->
   <button class="back-button" onclick="history.back()">← Kembali</button>
-
-  <!-- Tombol scan / start AR -->
-  <button class="floating-button" id="start-btn" title="Mulai AR">
-    &#x1F4F7;
-  </button>
+  <button class="floating-button" id="start-btn" title="Mulai AR">📷</button>
 
   <a-scene
     id="ar-scene"
@@ -36,24 +59,14 @@
     embedded
   >
     <a-assets>
-      <a-asset-item
-        id="meganthropusModel"
-        src="../assets/models/meganthropus.glb">
-      </a-asset-item>
+      <a-asset-item id="meganthropusModel" src="../assets/models/meganthropus.glb"></a-asset-item>
     </a-assets>
 
-    <!-- Lighting -->
     <a-light type="ambient" intensity="1.2"></a-light>
     <a-light type="directional" position="1 2 1" intensity="1.2"></a-light>
 
-    <!-- Camera -->
-    <a-camera
-      position="0 0 0"
-      look-controls="enabled: false"
-      wasd-controls="enabled: false">
-    </a-camera>
+    <a-camera position="0 0 0" look-controls="enabled: false" wasd-controls="enabled: false"></a-camera>
 
-    <!-- Marker target -->
     <a-entity mindar-image-target="targetIndex: 0">
       <a-gltf-model
         id="model"
@@ -63,10 +76,8 @@
         scale="0.5 0.5 0.5">
       </a-gltf-model>
     </a-entity>
-
   </a-scene>
 
-  <!-- Info bawah — muncul setelah target terdeteksi (opsional) -->
   <div class="bottom-info" id="bottom-info" style="display:none;">
     <h3>Meganthropus Paleojavanicus</h3>
     <p>Salah satu fosil manusia purba tertua yang ditemukan di Jawa, Indonesia.</p>
@@ -78,27 +89,61 @@
     const bottomInfo = document.getElementById('bottom-info');
     const sceneEl    = document.getElementById('ar-scene');
 
-    // Klik tombol kamera → sembunyikan loading, mulai AR
-    startBtn.addEventListener('click', () => {
-      loading.style.display    = 'none';
-      startBtn.style.display   = 'none';
+    startBtn.addEventListener('click', async () => {
+      loading.style.display  = 'none';
+      startBtn.style.display = 'none';
 
-      // Tampilkan info bawah setelah target terdeteksi
+      // Cek dulu kamera tersedia
+      try {
+        // Coba environment (HP belakang), fallback ke kamera manapun
+        let stream;
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: { ideal: 'environment' } }
+          });
+        } catch {
+          stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        }
+        // Lepas — MindAR akan buat stream sendiri
+        stream.getTracks().forEach(t => t.stop());
+      } catch (err) {
+        loading.style.display = 'block';
+        loading.querySelector('p').textContent =
+          'Gagal akses kamera: ' + err.message + '. Pastikan izin kamera aktif.';
+        startBtn.style.display = 'flex';
+        return;
+      }
+
+      // Setelah MindAR siap, paksa video element tampil
+      sceneEl.addEventListener('arReady', () => {
+        const videos = document.querySelectorAll('video');
+        videos.forEach(v => {
+          v.style.cssText = `
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            position: fixed !important;
+            top: 0 !important; left: 0 !important;
+            width: 100% !important; height: 100% !important;
+            object-fit: cover !important;
+            z-index: 0 !important;
+          `;
+        });
+      });
+
       sceneEl.addEventListener('targetFound', () => {
         bottomInfo.style.display = 'block';
       });
-
       sceneEl.addEventListener('targetLost', () => {
         bottomInfo.style.display = 'none';
       });
-    });
 
-    // Tangani error kamera
-    sceneEl.addEventListener('arError', () => {
-      loading.style.display = 'block';
-      loading.querySelector('p').textContent =
-        'Gagal mengakses kamera. Pastikan izin kamera diaktifkan, lalu muat ulang halaman.';
-      startBtn.style.display = 'flex';
+      sceneEl.addEventListener('arError', () => {
+        loading.style.display = 'block';
+        loading.querySelector('p').textContent =
+          'AR error. Coba muat ulang halaman dan izinkan akses kamera.';
+        startBtn.style.display = 'flex';
+      });
     });
   </script>
 
