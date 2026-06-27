@@ -1,0 +1,43 @@
+{
+  "id": "meganthropus",
+
+  "title": "Meganthropus Paleojavanicus",
+
+  "sections": {
+    "intro": {
+      "title": "Pendahuluan",
+      "audio": "../assets/audio/meganthropus/intro.mp3",
+      "caption": "Selamat datang di fitur Augmented Reality KURBUTEKS. Di hadapan Anda adalah rekonstruksi tiga dimensi Meganthropus paleojavanicus, salah satu manusia purba yang fosilnya ditemukan di Situs Sangiran, Jawa Tengah. Melalui fitur ini, Anda dapat mengamati setiap bagian tubuh Meganthropus untuk memahami ciri-ciri fisiknya berdasarkan hasil penelitian para ahli. Silakan pilih bagian tubuh yang ingin dipelajari."
+    },
+
+    "kepala": {
+      "title": "Kepala",
+      "audio": "../assets/audio/meganthropus/kepala.mp3",
+      "caption": "Perhatikan bagian kepala Meganthropus paleojavanicus. Ukuran tengkoraknya relatif besar dengan struktur tulang yang tebal dan kokoh. Dahi tampak lebih rendah dibandingkan manusia modern, sedangkan tonjolan alis terlihat cukup menonjol. Ciri-ciri ini menunjukkan bentuk tengkorak yang masih sangat primitif."
+    },
+
+    "rahang": {
+      "title": "Rahang",
+      "audio": "../assets/audio/meganthropus/rahang.mp3",
+      "caption": "Sekarang perhatikan bagian rahang. Meganthropus memiliki rahang yang sangat besar dan kuat. Struktur rahang ini diperkirakan mampu menghasilkan daya kunyah yang tinggi untuk mengolah makanan bertekstur keras, seperti umbi-umbian, biji-bijian, dan tumbuhan liar."
+    },
+
+    "badan": {
+      "title": "Badan",
+      "audio": "../assets/audio/meganthropus/badan.mp3",
+      "caption": "Selanjutnya amati bagian tubuh Meganthropus. Berdasarkan ukuran fosil yang ditemukan, para peneliti memperkirakan Meganthropus memiliki tubuh yang besar dan berotot. Struktur tulangnya menunjukkan postur yang lebih kekar dibandingkan beberapa jenis manusia purba lainnya."
+    },
+
+    "lengan": {
+      "title": "Lengan",
+      "audio": "../assets/audio/meganthropus/lengan.mp3",
+      "caption": "Perhatikan bagian lengan. Lengan yang kuat membantu Meganthropus melakukan berbagai aktivitas, seperti mengumpulkan makanan, memindahkan benda, serta beradaptasi dengan lingkungan alam pada masa Pleistosen."
+    },
+
+    "kaki": {
+      "title": "Kaki",
+      "audio": "../assets/audio/meganthropus/kaki.mp3",
+      "caption": "Terakhir, amati bagian kaki. Kaki Meganthropus memiliki struktur tulang yang kokoh untuk menopang tubuhnya yang besar. Bagian ini memungkinkan Meganthropus bergerak dan berpindah tempat dalam mencari makanan maupun bertahan hidup di lingkungan sekitarnya. Anda telah menyelesaikan eksplorasi anatomi Meganthropus paleojavanicus. Silakan lanjutkan ke kuis untuk menguji pemahaman Anda."
+    }
+  }
+}
