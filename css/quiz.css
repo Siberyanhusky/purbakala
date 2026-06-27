@@ -279,6 +279,92 @@ button{
 
 }
 
+/* ==========================================
+   REVIEW QUIZ
+========================================== */
+
+#review-list{
+
+    margin-top:30px;
+
+    text-align:left;
+
+}
+
+.review-item{
+
+    padding:18px;
+
+    margin-bottom:20px;
+
+    border:1px solid #DDD;
+
+    border-radius:14px;
+
+    background:#FAFAFA;
+
+}
+
+.review-item h4{
+
+    margin-bottom:10px;
+
+    color:#222;
+
+}
+
+.review-item p{
+
+    margin-bottom:8px;
+
+    line-height:1.7;
+
+}
+
+.review-item hr{
+
+    margin-top:15px;
+
+    border:none;
+
+    border-top:1px solid #EEE;
+
+}
+
+#ask-ai{
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#16A34A;
+
+    color:#FFF;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#ask-ai:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.95;
+
+}
+
 @media(max-width:768px){
 
 body{
