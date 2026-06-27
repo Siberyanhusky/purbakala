@@ -169,40 +169,42 @@ function finish(){
 
             const benar=userAnswers[index]===q.answer;
 
-            reviewList.innerHTML+=`
+           reviewList.innerHTML += `
 
-            <div class="review-item">
+<div class="review-item">
 
-                <h4>${benar?"✅":"❌"} Soal ${index+1}</h4>
+    <h4>${benar ? "✅" : "❌"} Soal ${index+1}</h4>
 
-                <p><b>${q.question}</b></p>
+    <p><strong>${q.question}</strong></p>
 
-                <p>Jawaban Anda :
-                ${q.options[userAnswers[index]]}</p>
+    <p>
+        Jawaban Anda :
+        ${q.options[userAnswers[index]]}
+    </p>
 
-               <p><strong>Jawaban Anda:</strong><br>
-                ${q.options[userAnswers[index]]}</p>
-                
-                ${benar
-                ? "<p style='color:green;'>✔ Jawaban Anda benar.</p>"
-                : `
-                <p style='color:#d97706;'>⚠ Jawaban Anda masih kurang tepat.</p>
-                
-                <button
-                class="ask-ai-btn"
-                data-question="${index}">
-                
-                🤖 Tanya PurbaAI
-                
-                </button>
-                `
-                }
+    ${
+        benar
+        ?
+        `<p style="color:#16A34A;">
+            ✔ Jawaban Anda benar.
+        </p>`
+        :
+        `<p style="color:#DC2626;">
+            ✖ Jawaban Anda masih kurang tepat.
+        </p>
 
-                <hr>
+        <button
+            class="ask-ai-btn"
+            data-question="${index}">
 
-            </div>
+            🤖 Diskusikan dengan PurbaAI
 
-            `;
+        </button>`
+    }
+
+</div>
+
+`;
 
         });
 
