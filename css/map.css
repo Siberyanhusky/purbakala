@@ -1,6 +1,13 @@
-/* ==========================================
+/* =====================================================
+   GOOGLE FONT
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+
+/* =====================================================
    RESET
-========================================== */
+===================================================== */
 
 *{
     margin:0;
@@ -16,27 +23,30 @@ body{
 
     overflow:hidden;
 
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Poppins',sans-serif;
 
-    background:#ECE2C6;
+    background:linear-gradient(
+        180deg,
+        #F6F0DE,
+        #E7D7B4,
+        #D8C39A
+    );
 
 }
 
 
-/* ==========================================
+/* =====================================================
    CONTAINER
-========================================== */
+===================================================== */
 
 .container{
 
     width:100%;
-    height:100vh;
+    min-height:100vh;
 
     display:flex;
 
     flex-direction:column;
-
-    justify-content:flex-start;
 
     align-items:center;
 
@@ -45,40 +55,44 @@ body{
 }
 
 
-/* ==========================================
+/* =====================================================
    HEADER
-========================================== */
+===================================================== */
 
 header{
 
     text-align:center;
 
-    margin-bottom:25px;
+    max-width:650px;
+
+    margin-bottom:30px;
 
 }
 
 header h1{
 
+    font-family:'Cinzel',serif;
+
     font-size:34px;
 
-    color:#3D2C1E;
+    color:#4D3624;
 
-    margin-bottom:10px;
+    margin-bottom:12px;
 
 }
 
 header p{
 
-    color:#5F5143;
+    color:#6D5A47;
 
     font-size:16px;
 
 }
 
 
-/* ==========================================
+/* =====================================================
    MAP
-========================================== */
+===================================================== */
 
 .map-container{
 
@@ -86,7 +100,13 @@ header p{
 
     width:100%;
 
-    max-width:850px;
+    max-width:900px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
 }
 
@@ -95,80 +115,108 @@ header p{
 
     width:100%;
 
-    display:block;
+    max-height:68vh;
+
+    object-fit:contain;
+
+    user-select:none;
+
+    pointer-events:none;
 
 }
 
 
-/* ==========================================
+/* =====================================================
    MARKER
-========================================== */
+===================================================== */
 
 #marker{
 
     position:absolute;
 
-    width:40px;
+    width:38px;
+
+    left:41.8%;
+
+    top:60.5%;
+
+    transform:translate(-50%,-100%);
 
     cursor:pointer;
 
-    transition:.3s;
-
     animation:pulse 2s infinite;
 
-    /*
-        Posisi Sangiran
-        nanti kita geser sedikit
-    */
+    transition:.25s;
 
-    left:58%;
-
-    top:58%;
+    z-index:5;
 
 }
 
 
 #marker:hover{
 
-    transform:scale(1.15);
+    transform:translate(-50%,-100%) scale(1.12);
 
 }
 
 
-/* ==========================================
+/* =====================================================
    CARD
-========================================== */
+===================================================== */
 
 #card{
 
     position:fixed;
 
-    left:0;
+    left:50%;
 
-    bottom:-500px;
+    bottom:-100%;
 
-    width:100%;
+    transform:translateX(-50%);
 
-    background:white;
+    width:min(95%,430px);
 
-    border-radius:30px 30px 0 0;
+    background:#ffffff;
 
-    padding:25px;
+    border-radius:25px;
 
-    box-shadow:0 -10px 30px rgba(0,0,0,.25);
+    padding:18px;
 
-    transition:.4s;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
 
-    z-index:20;
+    transition:.45s;
+
+    z-index:100;
 
 }
 
 
-/* nanti JS akan menambah class */
+/* nanti dipanggil JS */
 
 #card.show{
 
-    bottom:0;
+    bottom:20px;
+
+}
+
+
+/* garis kecil di atas */
+
+#card::before{
+
+    content:"";
+
+    display:block;
+
+    width:60px;
+
+    height:6px;
+
+    background:#d6d6d6;
+
+    border-radius:999px;
+
+    margin:0 auto 18px;
 
 }
 
@@ -177,16 +225,22 @@ header p{
 
     width:100%;
 
+    height:180px;
+
+    object-fit:cover;
+
     border-radius:15px;
 
-    margin-bottom:20px;
+    margin-bottom:18px;
 
 }
 
 
 #card h2{
 
-    color:#3D2C1E;
+    font-family:'Cinzel',serif;
+
+    color:#4D3624;
 
     margin-bottom:10px;
 
@@ -197,9 +251,11 @@ header p{
 
     color:#666;
 
-    line-height:1.6;
+    line-height:1.7;
 
-    margin-bottom:25px;
+    margin-bottom:20px;
+
+    font-size:15px;
 
 }
 
@@ -208,7 +264,7 @@ header p{
 
     width:100%;
 
-    padding:16px;
+    padding:15px;
 
     border:none;
 
@@ -218,45 +274,85 @@ header p{
 
     color:white;
 
-    font-size:18px;
+    font-size:17px;
+
+    font-weight:600;
 
     cursor:pointer;
+
+    transition:.25s;
 
 }
 
 
-/* ==========================================
+#startLearning:hover{
+
+    background:#5B52FF;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =====================================================
    MARKER ANIMATION
-========================================== */
+===================================================== */
 
 @keyframes pulse{
 
     0%{
 
-        transform:scale(1);
+        transform:translate(-50%,-100%) scale(1);
 
     }
 
     50%{
 
-        transform:scale(1.15);
+        transform:translate(-50%,-100%) scale(1.18);
 
     }
 
     100%{
 
-        transform:scale(1);
+        transform:translate(-50%,-100%) scale(1);
 
     }
 
 }
 
 
-/* ==========================================
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:992px){
+
+    #indonesiaMap{
+
+        max-height:60vh;
+
+    }
+
+}
+
+
+/* =====================================================
    MOBILE
-========================================== */
+===================================================== */
 
 @media(max-width:768px){
+
+.container{
+
+    padding:25px 15px;
+
+}
+
+header{
+
+    margin-bottom:20px;
+
+}
 
 header h1{
 
@@ -270,15 +366,41 @@ header p{
 
 }
 
+#indonesiaMap{
+
+    width:100%;
+
+    max-height:55vh;
+
+}
+
 #marker{
 
-    width:34px;
+    width:32px;
+
+    left:41.8%;
+
+    top:60.5%;
 
 }
 
 #card{
 
-    padding:20px;
+    width:94%;
+
+    padding:16px;
+
+}
+
+#card img{
+
+    height:150px;
+
+}
+
+#startLearning{
+
+    font-size:16px;
 
 }
 
