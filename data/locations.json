@@ -1,1 +1,8 @@
-
+[
+  {
+    "id": "sangiran",
+    "name": "Sangiran",
+    "image": "../assets/images/locations/sangiran.webp",
+    "page": "../materi/index.html"
+  }
+]
