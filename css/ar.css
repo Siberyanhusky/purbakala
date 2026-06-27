@@ -276,6 +276,86 @@ a-scene {
   background: #3730a3;
 }
 
+/* ==========================================
+   INFO PANEL TOGGLE
+========================================== */
+
+#panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+#close-info{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#e74c3c;
+
+    color:#fff;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#close-info:hover{
+
+    transform:scale(1.08);
+
+}
+
+#open-info{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:120px;
+
+    width:58px;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#4F46E5;
+
+    color:#fff;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+    transition:.25s;
+
+}
+
+#open-info:hover{
+
+    transform:scale(1.08);
+
+}
+
 /* =====================================================
    MOBILE
 ===================================================== */
