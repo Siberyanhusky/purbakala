@@ -1,0 +1,382 @@
+/* =====================================================
+   PURBA AI OVERLAY
+===================================================== */
+
+#purba-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(4px);
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    z-index:99999;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+}
+
+#purba-overlay.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+/* =====================================================
+   PANEL
+===================================================== */
+
+#purba-panel{
+
+    width:min(430px,100%);
+
+    height:100vh;
+
+    background:#FFF;
+
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:-10px 0 30px rgba(0,0,0,.18);
+
+    transform:translateX(100%);
+
+    transition:.35s ease;
+
+}
+
+#purba-overlay.active #purba-panel{
+
+    transform:translateX(0);
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+#purba-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px;
+
+    border-bottom:1px solid #EEE;
+
+}
+
+#purba-header h3{
+
+    font-size:22px;
+
+    color:#4F46E5;
+
+}
+
+#purba-close{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#F3F4F6;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+
+/* =====================================================
+   CHAT AREA
+===================================================== */
+
+#purba-chat{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    background:#FAFAFA;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+
+    max-width:82%;
+
+    padding:14px 18px;
+
+    border-radius:18px;
+
+    line-height:1.7;
+
+    word-break:break-word;
+
+    animation:fadeIn .25s;
+
+}
+
+.message.user{
+
+    align-self:flex-end;
+
+    background:#4F46E5;
+
+    color:#FFF;
+
+}
+
+.message.ai{
+
+    align-self:flex-start;
+
+    background:#FFF;
+
+    border:1px solid #E5E7EB;
+
+}
+
+
+/* =====================================================
+   QUICK QUESTION
+===================================================== */
+
+.quick-question{
+
+    width:100%;
+
+    padding:12px 16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    margin-bottom:10px;
+
+    transition:.25s;
+
+}
+
+.quick-question:hover{
+
+    background:#DDE5FF;
+
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+#purba-input{
+
+    display:flex;
+
+    gap:12px;
+
+    padding:18px;
+
+    border-top:1px solid #EEE;
+
+    background:#FFF;
+
+}
+
+#purba-message{
+
+    flex:1;
+
+    resize:none;
+
+    min-height:48px;
+
+    max-height:140px;
+
+    padding:14px;
+
+    border:1px solid #DDD;
+
+    border-radius:14px;
+
+    font-family:inherit;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+#purba-send{
+
+    width:60px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#4F46E5;
+
+    color:#FFF;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+
+/* =====================================================
+   TYPING
+===================================================== */
+
+.typing{
+
+    display:flex;
+
+    gap:6px;
+
+    padding:14px 18px;
+
+    background:#FFF;
+
+    border-radius:18px;
+
+    width:fit-content;
+
+    border:1px solid #E5E7EB;
+
+}
+
+.typing span{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#999;
+
+    animation:blink 1.2s infinite;
+
+}
+
+.typing span:nth-child(2){
+
+    animation-delay:.2s;
+
+}
+
+.typing span:nth-child(3){
+
+    animation-delay:.4s;
+
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes blink{
+
+0%{
+
+opacity:.3;
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:.3;
+
+}
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(10px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:768px){
+
+#purba-panel{
+
+    width:100%;
+
+}
+
+}
