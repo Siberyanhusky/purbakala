@@ -145,15 +145,41 @@ async function sendMessage() {
 
     showTyping();
 
-    // ==========================================
-    // SEMENTARA (belum API)
-    // ==========================================
+    try{
 
-    setTimeout(() => {
+    const res = await fetch("/api/chat",{
 
-        hideTyping();
+        method:"POST",
 
-        appendAI(
+        headers:{
+
+            "Content-Type":"application/json"
+
+        },
+
+        body:JSON.stringify({
+
+            message
+
+        })
+
+    });
+
+    const data = await res.json();
+
+    hideTyping();
+
+    appendAI(data.reply);
+
+}
+
+catch(err){
+
+    hideTyping();
+
+    appendAI("PurbaAI sedang tidak dapat dihubungi.");
+
+}
 
 `Terima kasih atas pertanyaan Anda.
 
