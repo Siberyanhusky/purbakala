@@ -171,13 +171,15 @@ async function sendMessage() {
 
     appendAI(data.reply);
 
-}
-
-catch(err){
-
-    hideTyping();
-
-    appendAI("PurbaAI sedang tidak dapat dihubungi.");
+    }
+    
+    catch(err){
+    
+        hideTyping();
+    
+        appendAI("PurbaAI sedang tidak dapat dihubungi.");
+    
+    }
 
 }
 
