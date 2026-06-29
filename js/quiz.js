@@ -216,7 +216,7 @@ if(askAI){
 
     askAI.onclick=()=>{
 
-        alert("PurbaAI akan segera tersedia.");
+    openPurbaAI();
 
     };
 
