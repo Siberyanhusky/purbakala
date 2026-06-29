@@ -181,18 +181,6 @@ catch(err){
 
 }
 
-`Terima kasih atas pertanyaan Anda.
-
-PurbaAI belum terhubung ke server AI.
-
-Tahap berikutnya kita akan menghubungkannya menggunakan API sehingga saya dapat menjawab pertanyaan Anda secara langsung.`
-
-        );
-
-    },1200);
-
-}
-
 // =====================================================
 // EVENT
 // =====================================================
