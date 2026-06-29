@@ -12,6 +12,7 @@
     <title>Quiz | KURBUTEKS</title>
 
     <link rel="stylesheet" href="../css/quiz.css">
+    <link rel="stylesheet" href="../css/purbaai.css">
 
 </head>
 
@@ -144,17 +145,15 @@
 
         </h3>
 
-        <p id="result-message">
+        <p id="result-message"></p>
 
-           <div id="review-list"></div>
-
-            <button id="ask-ai">
-
+        <div id="review-list"></div>
+        
+        <button id="ask-ai">
+        
             🤖 Tanya PurbaAI
-
-            </button>
-
-        </p>
+        
+        </button>
 
         <div class="result-buttons">
 
@@ -172,10 +171,57 @@
 
         </div>
 
-    </section>
+        </section>
 
+
+    <!-- =====================================================
+     PURBA AI
+===================================================== -->
+
+<div id="purba-overlay">
+
+    <div id="purba-panel">
+
+        <div id="purba-header">
+
+            <h3>🤖 PurbaAI</h3>
+
+            <button id="purba-close">
+
+                ✕
+
+            </button>
+
+        </div>
+
+        <div id="purba-chat">
+
+        </div>
+
+        <div id="purba-input">
+
+            <textarea
+
+                id="purba-message"
+
+                placeholder="Tanyakan sesuatu tentang manusia purba...">
+
+            </textarea>
+
+            <button id="purba-send">
+
+                Kirim
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+   <script src="../js/purbaai.js"></script>
     <script src="../js/quiz.js"></script>
 
 </body>
-
 </html>
