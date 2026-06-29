@@ -1,37 +1,23 @@
 export default async function handler(req, res) {
-
     if (req.method !== "POST") {
-        return res.status(405).json({
-            reply: "Method not allowed."
-        });
+        return res.status(405).json({ reply: "Method not allowed." });
     }
 
     try {
-
         const { message } = req.body;
 
-        console.log(process.env.DAHONO_API_KEY);
-
-        const response = await fetch(
-            "https://gateway.dahono.com/v1/chat/completions",
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${process.env.DAHONO_API_KEY}`
-                },
-
-                body: JSON.stringify({
-
-                    model: "dahono/deepseek-v3.2",
-
-                    messages: [
-
-                        {
-                            role: "system",
-                            content: `
-                            
+        const response = await fetch("https://gateway.dahono.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${process.env.DAHONO_API_KEY}`
+            },
+            body: JSON.stringify({
+                model: "dahono/deepseek-v3.2",
+                messages: [
+                    {
+                        role: "system",
+                        content: `
                         Kamu adalah PurbaAI.
                         
                         PurbaAI merupakan tutor virtual pada aplikasi KURBUTEKS
@@ -47,52 +33,32 @@ export default async function handler(req, res) {
                         - Berikan petunjuk terlebih dahulu.
                         - Jika siswa meminta jawaban, ajak mereka berpikir.
                         - Jawaban maksimal 200 kata.
-                        },
+                        `
+                    },
+                    {
+                        role: "user",
+                        content: message
+                    }
+                ]
+            })
+        });
 
-                        {
-                            role: "user",
-                            content: message
-                        }
-
-                    ]
-
-                })
-
-            });
-
-          const data = await response.json();
-
-          console.log("STATUS =", response.status);
-          console.log("DATA =", JSON.stringify(data, null, 2));
+        const data = await response.json();
+        console.log("STATUS =", response.status);
+        console.log("DATA =", JSON.stringify(data, null, 2));
 
         if (!response.ok) {
-
             console.error(data);
-
-            return res.status(response.status).json({
-                reply: "PurbaAI sedang mengalami gangguan."
-            });
-
+            return res.status(response.status).json({ reply: "PurbaAI sedang mengalami gangguan." });
         }
 
-        return res.status(200).json({
+        // ✅ Extract teks balasan dari struktur OpenAI-compatible response
+        const reply = data.choices?.[0]?.message?.content ?? "PurbaAI tidak dapat memberikan jawaban.";
 
-            reply: JSON.stringify(data)
-        
-        });
+        return res.status(200).json({ reply });
 
-    }
-
-    catch (err) {
-
+    } catch (err) {
         console.error(err);
-
-        return res.status(500).json({
-
-            reply: "Terjadi kesalahan pada server."
-
-        });
-
+        return res.status(500).json({ reply: "Terjadi kesalahan pada server." });
     }
-
 }
