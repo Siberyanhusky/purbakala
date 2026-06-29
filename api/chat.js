@@ -10,6 +10,8 @@ export default async function handler(req, res) {
 
         const { message } = req.body;
 
+        console.log(process.env.DAHONO_API_KEY);
+
         const response = await fetch(
             "https://gateway.dahono.com/v1/chat/completions",
             {
