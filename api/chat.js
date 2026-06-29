@@ -58,7 +58,10 @@ Aturan:
 
             });
 
-        const data = await response.json();
+          const data = await response.json();
+
+          console.log("STATUS =", response.status);
+          console.log("DATA =", JSON.stringify(data, null, 2));
 
         if (!response.ok) {
 
@@ -72,8 +75,8 @@ Aturan:
 
         return res.status(200).json({
 
-            reply: data.choices[0].message.content
-
+            reply: JSON.stringify(data)
+        
         });
 
     }
