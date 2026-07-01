@@ -145,42 +145,72 @@ async function sendMessage() {
 
     showTyping();
 
-    try{
+    // Bikin bubble AI kosong yang bakal diisi progresif
+    const aiDiv = document.createElement("div");
+    aiDiv.className = "message ai";
+    let aiText = "";
 
-    const res = await fetch("/api/chat",{
+    try {
+        const res = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message })
+        });
 
-        method:"POST",
+        if (!res.ok || !res.body) {
+            throw new Error("Response gagal");
+        }
 
-        headers:{
-
-            "Content-Type":"application/json"
-
-        },
-
-        body:JSON.stringify({
-
-            message
-
-        })
-
-    });
-
-    const data = await res.json();
-
-    hideTyping();
-
-    appendAI(data.reply);
-
-    }
-    
-    catch(err){
-    
         hideTyping();
-    
-        appendAI("PurbaAI sedang tidak dapat dihubungi.");
-    
-    }
+        chatBox.appendChild(aiDiv);
 
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+
+            // SSE format: baris dipisah "\n\n", tiap baris data mulai "data: "
+            const lines = buffer.split("\n");
+            buffer = lines.pop(); // sisa baris belum lengkap, simpan buat next loop
+
+            for (const line of lines) {
+                const trimmed = line.trim();
+                if (!trimmed.startsWith("data:")) continue;
+
+                const payload = trimmed.replace("data:", "").trim();
+                if (payload === "[DONE]") continue;
+
+                try {
+                    const json = JSON.parse(payload);
+                    const delta = json.choices?.[0]?.delta?.content;
+                    if (delta) {
+                        aiText += delta;
+                        aiDiv.textContent = aiText;
+                        scrollBottom();
+                    }
+                } catch (e) {
+                    // chunk belum lengkap, skip
+                }
+            }
+        }
+
+        if (!aiText) {
+            aiDiv.textContent = "PurbaAI tidak dapat memberikan jawaban.";
+        }
+
+    } catch (err) {
+        hideTyping();
+        if (!aiDiv.textContent) {
+            aiDiv.textContent = "PurbaAI sedang tidak dapat dihubungi.";
+            chatBox.appendChild(aiDiv);
+        }
+        scrollBottom();
+    }
 }
 
 // =====================================================
