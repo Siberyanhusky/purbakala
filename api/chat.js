@@ -21,10 +21,11 @@ export default async function handler(req, res) {
         - Jangan langsung memberikan jawaban quiz.
         - Berikan petunjuk terlebih dahulu.
         - Jika siswa meminta jawaban, ajak mereka berpikir.
-        - Jawaban maksimal 100 kata.
+        - Jika siswa menanyakan hal di luar konteks meganthropus, jangan jawab, cukup jawab dengan "anda diluar konteks"
+        - Jawaban maksimal 80 kata.
         `;
 
-        const response = await fetch("https://api.atomesus.com/v1/chat/completions", {
+        const atomesusRes = await fetch("https://api.atomesus.com/v1/chat/completions", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -33,34 +34,42 @@ export default async function handler(req, res) {
             body: JSON.stringify({
                 model: "cipher",
                 messages: [
-                    // Atomesus mengabaikan role "system", jadi digabung ke "user"
                     {
                         role: "user",
                         content: `${systemPrompt}\n\nPertanyaan siswa: ${message}`
                     }
-                ]
+                ],
+                max_tokens: 300,
+                stream: true
             })
         });
 
-        const data = await response.json();
-        console.log("STATUS =", response.status);
-        console.log("DATA =", JSON.stringify(data, null, 2));
-
-        if (!response.ok) {
-            console.error(data);
-            // Tangani error spesifik Atomesus
-            if (data?.error?.code === "insufficient_credits") {
-                return res.status(402).json({ reply: "Kredit PurbaAI habis, hubungi admin." });
-            }
-            return res.status(response.status).json({ reply: "PurbaAI sedang mengalami gangguan." });
+        if (!atomesusRes.ok) {
+            const errData = await atomesusRes.json().catch(() => ({}));
+            console.error(errData);
+            return res.status(atomesusRes.status).json({ reply: "PurbaAI sedang mengalami gangguan." });
         }
 
-        const reply = data.choices?.[0]?.message?.content ?? "PurbaAI tidak dapat memberikan jawaban.";
+        // Set header buat SSE streaming
+        res.writeHead(200, {
+            "Content-Type": "text/event-stream",
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive"
+        });
 
-        return res.status(200).json({ reply });
+        // Neruskan chunk stream dari Atomesus langsung ke client
+        for await (const chunk of atomesusRes.body) {
+            res.write(chunk);
+        }
+
+        res.end();
 
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ reply: "Terjadi kesalahan pada server." });
+        if (!res.headersSent) {
+            res.status(500).json({ reply: "Terjadi kesalahan pada server." });
+        } else {
+            res.end();
+        }
     }
 }
