@@ -13,7 +13,7 @@ export default async function handler(req, res) {
                 "Authorization": `Bearer ${process.env.DAHONO_API_KEY}`
             },
             body: JSON.stringify({
-                model: "dahono/deepseek-v4-pro",
+                model: "dahono/deepseek-v3.2",
                 messages: [
                     {
                         role: "system",
